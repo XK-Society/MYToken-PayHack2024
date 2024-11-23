@@ -1,32 +1,68 @@
-import React from 'react';
-import { statsData } from '../data/statsData';
+import React from "react";
+import { statsData } from "../data/statsData";
+import { Bitcoin, Coins } from "lucide-react";
 
 const Crypto = () => {
   const { crypto } = statsData;
-  
+
   return (
-    <div className="w-full flex justify-center pb-4">
-      <div className="w-full">
-        <div className="p-4 h-22 bg-white rounded-lg shadow-lg hover:shadow-md transition-shadow">
-          <h3 className="text-sm font-medium text-gray-500">{crypto.title}</h3>
-          <div className="flex items-baseline mt-1">
-            <p className="text-2xl font-semibold text-gray-900">
-              {crypto.value}
-            </p>
-            <span className={`ml-2 text-sm font-medium ${
-              crypto.isIncrease ? 'text-green-600' : 'text-red-600'
-            }`}>
-              {crypto.change}
-            </span>
+    <div className="w-full h-full">
+      <div className="h-full min-h-[280px] p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-purple-100 rounded-lg">
+              <Coins className="h-6 w-6 text-purple-600" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-800">{crypto.title}</h3>
+              <p className="text-sm text-gray-500">Portfolio Value</p>
+            </div>
           </div>
-          <div className="mt-2 space-y-1">
-            {Object.entries(crypto.breakdown).map(([key, value]) => (
-              <div key={key} className="flex justify-between text-sm">
-                <span className="text-gray-500">{key.toUpperCase()}</span>
-                <span className="font-medium">{value}</span>
+          <span
+            className={`px-2.5 py-1 rounded-full text-xs font-medium ${
+              crypto.isIncrease
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+            }`}
+          >
+            {crypto.change}
+          </span>
+        </div>
+
+        <p className="text-3xl font-bold text-gray-900 mb-6">{crypto.value}</p>
+
+        <div className="space-y-3">
+          {Object.entries(crypto.breakdown).map(([key, value]) => (
+            <div
+              key={key}
+              className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+            >
+              <div className="flex items-center gap-3">
+                {key === "bitcoin" && (
+                  <Bitcoin className="h-5 w-5 text-gray-500" />
+                )}
+                {key === "ethereum" && (
+                  <svg
+                    className="h-5 w-5 text-gray-500"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M12 2L2 12L12 22L22 12L12 2Z"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                )}
+                <span className="text-sm font-medium text-gray-700">
+                  {key.toUpperCase()}
+                </span>
               </div>
-            ))}
-          </div>
+              <span className="font-semibold">{value}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
-import React from 'react';
-import Chart from './Chart';
-import { dashboardData } from '../data/financialData';
+import React from "react";
+import Chart from "./Chart";
+import { dashboardData } from "../data/financialData";
 
 const Investment = () => {
   return (
@@ -9,26 +9,32 @@ const Investment = () => {
         <div className="flex justify-center mb-6">
           <h2 className="text-xl font-bold text-gray-800">Investments</h2>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div>
+          <Chart data={dashboardData.investments} />
+        </div>
+
+        <div className="flex flex-col">
           <div>
-            <Chart data={dashboardData.investments} />
-          </div>
-          
-          <div className="space-y-4">
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <h3 className="text-lg font-semibold text-blue-800">Investment Portfolio</h3>
-              <p className="text-sm text-gray-600 mt-1">Total Investment Value</p>
+            <div className="bg-blue-50 p-4 rounded-lg my-4">
+              <h3 className="text-lg font-semibold text-blue-800">
+                Investment Portfolio
+              </h3>
+              <p className="text-sm text-gray-600 mt-1">
+                Total Investment Value
+              </p>
               <p className="text-2xl font-bold text-blue-600">
                 RM {dashboardData.summary.totalInvestments.toLocaleString()}
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              {dashboardData.investments.map((item) => (
-                <div key={item.name} className="bg-gray-50 p-3 rounded-lg">
+              {dashboardData.investments.map((item, index) => (
+                <div key={index} className="bg-gray-50 p-3 rounded-lg">
                   <h4 className="text-sm font-semibold">{item.name}</h4>
-                  <p className="text-lg font-bold">RM {item.value.toLocaleString()}</p>
+                  <p className="text-lg font-bold">
+                    RM {item.value.toLocaleString()}
+                  </p>
                 </div>
               ))}
             </div>
