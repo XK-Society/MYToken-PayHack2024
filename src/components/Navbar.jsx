@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-white shadow-lg">
+      <nav className="sticky top-0 z-50 bg-white shadow-lg ">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between h-16">
             {/* Left Menu Button */}

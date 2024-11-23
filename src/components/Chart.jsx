@@ -1,13 +1,6 @@
 import React from 'react';
 
-const Chart = () => {
-  const data = [
-    { name: 'Group A', value: 400, color: '#0088FE' },
-    { name: 'Group B', value: 300, color: '#00C49F' },
-    { name: 'Group C', value: 200, color: '#FFBB28' },
-    { name: 'Group D', value: 100, color: '#FF8042' }
-  ];
-
+const Chart = ({ data }) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
   let currentAngle = 0;
 
@@ -33,9 +26,9 @@ const Chart = () => {
   };
 
   return (
-    <div className="w-full flex items-center">
-      <div className="relative w-40 h-40"> {/* Reduced from w-full max-w-3xl to w-64 */}
-        <svg viewBox="0 0 400 400" className="w-40">
+    <div className="w-full flex justify-center items-center">
+      <div className="relative w-64">
+        <svg viewBox="0 0 400 400" className="w-full">
           {data.map((item, index) => {
             const sliceAngle = (item.value / total) * 360;
             const path = getSlicePath(currentAngle, currentAngle + sliceAngle, 150);
