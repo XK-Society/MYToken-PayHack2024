@@ -9,10 +9,10 @@ const Bills = () => {
         { name: 'Group D', value: 100, color: '#FF8042' }
       ];
   return (
-    <div className="w-full flex justify-center p-2">
+    <div className="w-full flex justify-center pb-4">
     <div className="w-full max-w-7xl p-6 bg-white rounded-lg shadow-lg">
       <div className="flex justify-center">
-          <h2 className="text-xl font-bold mb-4 text-gray-800">Bills</h2>
+          <h2 className="text-xl font-bold text-gray-800">Bills</h2>
       </div>
       <Chart data={billData}/>
     </div>

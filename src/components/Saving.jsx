@@ -1,41 +1,19 @@
 import React from 'react'
 
-const InfoBox = () => {
+const Saving = () => {
     const savingsStats = [
         {
           title: "Total Savings",
           value: "$12,500",
-          change: "+8.2%",
           isIncrease: true,
         },
-        {
-          title: "Monthly Income",
-          value: "$3,200",
-          change: "+12.5%",
-          isIncrease: true,
-        },
-        {
-          title: "Monthly Expenses",
-          value: "$2,100",
-          change: "-3.4%",
-          isIncrease: false,
-        },
-        {
-          title: "Net Savings",
-          value: "$1,100",
-          change: "+15.3%",
-          isIncrease: true,
-        }
       ];
     
       return (
-        <div className="w-full flex justify-center pt-0 pb-2">
-          <div className="">
-       
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="w-full flex justify-center pr-4 pb-4">
+            <div className="w-full">
               {savingsStats.map((stat, index) => (
-                <div key={index} className="p-4 bg-gray-50 rounded-lg shadow hover:shadow-md transition-shadow">
+                <div key={index} className="p-4 h-22 bg-white rounded-lg shadow-lg hover:shadow-md transition-shadow">
                   <h3 className="text-sm font-medium text-gray-500">{stat.title}</h3>
                   <div className="flex items-baseline mt-1">
                     <p className="text-2xl font-semibold text-gray-900">
@@ -50,8 +28,8 @@ const InfoBox = () => {
                 </div>
               ))}
             </div>
-          </div>
         </div>
       );
     };
-export default InfoBox
+
+export default Saving

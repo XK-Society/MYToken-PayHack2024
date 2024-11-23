@@ -26,8 +26,8 @@ const Chart = ({ data }) => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center">
-      <div className="relative w-64">
+    <div className="w-full flex flex-col items-center">
+      <div className="relative">
         <svg viewBox="0 0 400 400" className="w-full">
           {data.map((item, index) => {
             const sliceAngle = (item.value / total) * 360;
@@ -61,7 +61,7 @@ const Chart = ({ data }) => {
         </svg>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-4 grid grid-cols-2 gap-4">
         {data.map((item, index) => (
           <div key={index} className="flex items-center">
             <div 
