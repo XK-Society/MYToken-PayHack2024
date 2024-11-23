@@ -315,8 +315,20 @@ const Defi = () => {
       )}
 
       <div className="bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-2xl font-bold mb-6">Stake</h1>
-        
+        <h1 className="text-2xl font-bold mb-2">Stake</h1>
+        <div className="mb-6 text-gray-600">
+          <p className="mb-2">
+            Earn passive income by staking your ETH. Current Annual Percentage Yield: <span className="font-semibold text-indigo-600">5%</span>
+          </p>
+          <ul className="list-disc list-inside text-sm space-y-1">
+            <li>Stake any amount of ETH to start earning rewards</li>
+            <li>Rewards are automatically calculated and distributed per block</li>
+            <li>No lock period - withdraw your stake anytime</li>
+            <li>Zero platform fees</li>
+            <li>No risk of losing your staked ETH</li>
+          </ul>
+        </div>
+
         {isWrongNetwork && isConnected && (
           <div className="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">
             Please switch to the Sepolia Test Network
