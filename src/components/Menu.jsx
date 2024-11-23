@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
 const Menu = ({ isOpen, onClose }) => {
@@ -26,13 +27,13 @@ const Menu = ({ isOpen, onClose }) => {
         </div>
         <div className="space-y-2">
           {menuItems.map((item) => (
-            <a
+            <Link
               key={item.name}
-              href={item.path}
+              to={item.path}
               className="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
