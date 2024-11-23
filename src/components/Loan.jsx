@@ -1,32 +1,59 @@
-import React from 'react';
-import { statsData } from '../data/statsData';
+import React from "react";
+import { statsData } from "../data/statsData";
+import { BanknoteIcon, CarIcon } from "lucide-react";
 
 const Loan = () => {
   const { loan } = statsData;
-  
+
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-full">
-        <div className="p-4 h-22 bg-white rounded-lg shadow-lg hover:shadow-md transition-shadow">
-          <h3 className="text-sm font-medium text-gray-500">{loan.title}</h3>
-          <div className="flex items-baseline mt-1">
-            <p className="text-2xl font-semibold text-gray-900">
-              {loan.value}
-            </p>
-            <span className={`ml-2 text-sm font-medium ${
-              loan.isIncrease ? 'text-red-600' : 'text-green-600'
-            }`}>
-              {loan.change}
-            </span>
+    <div className="w-full h-full">
+      <div className="h-full min-h-[280px] p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-red-100 rounded-lg">
+              <BanknoteIcon className="h-6 w-6 text-red-600" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-800">{loan.title}</h3>
+              <p className="text-sm text-gray-500">Outstanding Balance</p>
+            </div>
           </div>
-          <div className="mt-2 space-y-1">
-            {Object.entries(loan.breakdown).map(([key, value]) => (
-              <div key={key} className="flex justify-between text-sm">
-                <span className="text-gray-500">{key.toUpperCase()}</span>
-                <span className="font-medium">{value}</span>
+          <span
+            className={`px-2.5 py-1 rounded-full text-xs font-medium ${
+              loan.isIncrease
+                ? "bg-red-100 text-red-800"
+                : "bg-green-100 text-green-800"
+            }`}
+          >
+            {loan.change}
+          </span>
+        </div>
+
+        <p className="text-3xl font-bold text-gray-900 mb-6">{loan.value}</p>
+
+        <div className="space-y-3">
+          {Object.entries(loan.breakdown).map(([key, value]) => (
+            <div
+              key={key}
+              className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+            >
+              <div className="flex items-center gap-3">
+                {key === "ptptn" && (
+                  <BanknoteIcon className="h-5 w-5 text-gray-500" />
+                )}
+                {key === "carLoan" && (
+                  <CarIcon className="h-5 w-5 text-gray-500" />
+                )}
+                <span className="text-sm font-medium text-gray-700">
+                  {key
+                    .split(/(?=[A-Z])/)
+                    .join(" ")
+                    .toUpperCase()}
+                </span>
               </div>
-            ))}
-          </div>
+              <span className="font-semibold">{value}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
