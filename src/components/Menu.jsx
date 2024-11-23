@@ -6,8 +6,6 @@ const Menu = ({ isOpen, onClose }) => {
   const menuItems = [
     { name: 'Dashboard', path: '/' },
     { name: 'DeFi', path: '/defi' },
-    { name: 'Profile', path: '/profile' },
-    { name: 'Settings', path: '/settings' },
     { name: 'Loyalty', path: '/loyalty' },
   ];
 

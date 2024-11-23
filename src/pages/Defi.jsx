@@ -11,6 +11,8 @@ const Defi = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
   const [isWrongNetwork, setIsWrongNetwork] = useState(false);
+  const [ethPrice, setEthPrice] = useState(0);
+  const [myrRate, setMyrRate] = useState(0);
 
   const SEPOLIA_CHAIN_ID = '0xaa36a7'; // Chain ID for Sepolia
   const CONTRACT_ADDRESS = "0x0008e041f26Cda8fB83085F79694098b5d045bAf";
@@ -238,6 +240,28 @@ const Defi = () => {
     };
   }, [isConnected, stakingContract, account]); // Dependencies
 
+  const fetchPrices = async () => {
+    try {
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=myr');
+      const data = await response.json();
+      setMyrRate(data.ethereum.myr);
+    } catch (error) {
+      console.error("Error fetching ETH price:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPrices(); // Initial fetch
+    const interval = setInterval(fetchPrices, 60000); // Update every minute
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const ethToMYR = (ethAmount) => {
+    if (!myrRate || !ethAmount) return '0.00';
+    return (parseFloat(ethAmount) * myrRate).toFixed(2);
+  };
+
   return (
     <div className="max-w-2xl mx-auto p-6">
       <div className="bg-white rounded-lg shadow-lg p-6">
@@ -279,13 +303,31 @@ const Defi = () => {
           <>
             <div className="mb-6">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold">Wallet Address</h2>
+                <h2 className="text-lg font-semibold">Your Staking Position</h2>
                 <div className="text-sm text-gray-500">
                   {account.slice(0, 6)}...{account.slice(-4)}
                 </div>
               </div>
-              <p>Staked Balance: {stakedBalance} ETH</p>
-              <p>Pending Rewards: {pendingRewards} ETH</p>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <p>Staked Balance:</p>
+                  <div className="text-right">
+                    <p>{stakedBalance} ETH</p>
+                    <p className="text-sm text-gray-500">
+                      ≈ RM {ethToMYR(stakedBalance)}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <p>Pending Rewards:</p>
+                  <div className="text-right">
+                    <p>{pendingRewards} ETH</p>
+                    <p className="text-sm text-gray-500">
+                      ≈ RM {ethToMYR(pendingRewards)}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <form onSubmit={handleStake} className="mb-6">
