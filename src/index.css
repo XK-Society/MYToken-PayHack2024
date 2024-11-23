@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.connect-wallet-button {
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
+  transition: opacity 0.3s ease;
+}
+
+.connect-wallet-button:hover {
+  opacity: 0.85;
+}
+
+.gradient-button {
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
+  transition: opacity 0.3s ease;
+}
+
+.gradient-button:hover {
+  opacity: 0.85;
+}
+
+.gradient-button-green {
+    background: linear-gradient(to right, #059669, #10b981);
+    transition: opacity 0.3s ease;
+  }
+  
+  .gradient-button-green:hover {
+    opacity: 0.85;
+  }
